@@ -605,13 +605,13 @@ impl client::Part for ExtractionRules {}
 pub struct Field {
     /// The following map contains fields that are not explicitly mentioned above,this give connectors the flexibility to add new metadata fields.
     #[serde(rename="additionalDetails")]
-    pub additional_details: Option<HashMap<String, String>>,
+    pub additional_details: Option<HashMap<String, serde_json::Value>>,
     /// The data type of the Field.
     #[serde(rename="dataType")]
     pub data_type: Option<String>,
     /// The following field specifies the default value of the Field provided by the external system if a value is not provided.
     #[serde(rename="defaultValue")]
-    pub default_value: Option<String>,
+    pub default_value: Option<serde_json::Value>,
     /// A brief description of the Field.
     pub description: Option<String>,
     /// Name of the Field.
@@ -638,7 +638,7 @@ pub struct InputParameter {
     pub data_type: Option<String>,
     /// The following field specifies the default value of the Parameter provided by the external system if a value is not provided.
     #[serde(rename="defaultValue")]
-    pub default_value: Option<String>,
+    pub default_value: Option<serde_json::Value>,
     /// A brief description of the Parameter.
     pub description: Option<String>,
     /// Specifies whether a null value is allowed.
@@ -866,7 +866,7 @@ pub struct Location {
     #[serde(rename="locationId")]
     pub location_id: Option<String>,
     /// Service-specific metadata. For example the available capacity at the given location.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
     pub name: Option<String>,
 }
@@ -942,11 +942,11 @@ pub struct Operation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<Status>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for Operation {}
@@ -1216,7 +1216,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

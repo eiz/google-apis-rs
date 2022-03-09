@@ -478,7 +478,7 @@ pub struct LogEntry {
     pub insert_id: Option<String>,
     /// The log entry payload, represented as a structure that is expressed as a JSON object.
     #[serde(rename="jsonPayload")]
-    pub json_payload: Option<HashMap<String, String>>,
+    pub json_payload: Option<HashMap<String, serde_json::Value>>,
     /// Optional. A set of user-defined (key, value) data that provides additional information about the log entry.
     pub labels: Option<HashMap<String, String>>,
     /// Required. The resource name of the log to which this log entry belongs:
@@ -495,7 +495,7 @@ pub struct LogEntry {
     pub operation: Option<LogEntryOperation>,
     /// The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.
     #[serde(rename="protoPayload")]
-    pub proto_payload: Option<HashMap<String, String>>,
+    pub proto_payload: Option<HashMap<String, serde_json::Value>>,
     /// Output only. The time the log entry was received by Logging.
     #[serde(rename="receiveTimestamp")]
     pub receive_timestamp: Option<String>,
@@ -812,7 +812,7 @@ pub struct MonitoredResourceMetadata {
     ///   "spot_instance": false }
     /// 
     #[serde(rename="systemLabels")]
-    pub system_labels: Option<HashMap<String, String>>,
+    pub system_labels: Option<HashMap<String, serde_json::Value>>,
     /// Output only. A map of user-defined metadata labels.
     #[serde(rename="userLabels")]
     pub user_labels: Option<HashMap<String, String>>,

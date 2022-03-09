@@ -444,7 +444,7 @@ pub struct HttpBody {
     /// The HTTP request/response body as raw binary.
     pub data: Option<String>,
     /// Application specific response metadata. Must be set in the first response for streaming APIs.
-    pub extensions: Option<Vec<HashMap<String, String>>>,
+    pub extensions: Option<Vec<HashMap<String, serde_json::Value>>>,
 }
 
 impl client::ResponseResult for HttpBody {}

@@ -252,7 +252,7 @@ pub struct ConfigSettings {
     pub locale: Option<String>,
     /// List of categories of audits the run should conduct.
     #[serde(rename="onlyCategories")]
-    pub only_categories: Option<String>,
+    pub only_categories: Option<serde_json::Value>,
 }
 
 impl client::Part for ConfigSettings {}
@@ -301,7 +301,7 @@ pub struct LighthouseAuditResultV5 {
     /// The description of the audit.
     pub description: Option<String>,
     /// Freeform details section of the audit.
-    pub details: Option<HashMap<String, String>>,
+    pub details: Option<HashMap<String, serde_json::Value>>,
     /// The value that should be displayed on the UI for this audit.
     #[serde(rename="displayValue")]
     pub display_value: Option<String>,
@@ -319,14 +319,14 @@ pub struct LighthouseAuditResultV5 {
     #[serde(rename="numericValue")]
     pub numeric_value: Option<f64>,
     /// The score of the audit, can be null.
-    pub score: Option<String>,
+    pub score: Option<serde_json::Value>,
     /// The enumerated score display mode.
     #[serde(rename="scoreDisplayMode")]
     pub score_display_mode: Option<String>,
     /// The human readable title.
     pub title: Option<String>,
     /// Possible warnings that occurred in the audit, can be null.
-    pub warnings: Option<String>,
+    pub warnings: Option<serde_json::Value>,
 }
 
 impl client::Part for LighthouseAuditResultV5 {}
@@ -349,7 +349,7 @@ pub struct LighthouseCategoryV5 {
     #[serde(rename="manualDescription")]
     pub manual_description: Option<String>,
     /// The overall score of the category, the weighted average of all its audits. (The category's score, can be null.)
-    pub score: Option<String>,
+    pub score: Option<serde_json::Value>,
     /// The human-friendly name of the category.
     pub title: Option<String>,
 }
@@ -391,7 +391,7 @@ pub struct LighthouseResultV5 {
     pub requested_url: Option<String>,
     /// List of all run warnings in the LHR. Will always output to at least `[]`.
     #[serde(rename="runWarnings")]
-    pub run_warnings: Option<Vec<String>>,
+    pub run_warnings: Option<Vec<serde_json::Value>>,
     /// A top-level error message that, if present, indicates a serious enough problem that this Lighthouse result may need to be discarded.
     #[serde(rename="runtimeError")]
     pub runtime_error: Option<RuntimeError>,

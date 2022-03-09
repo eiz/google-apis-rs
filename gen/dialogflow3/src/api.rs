@@ -483,7 +483,7 @@ pub struct GoogleCloudDialogflowCxV3ConversationTurnUserInput {
     pub enable_sentiment_analysis: Option<bool>,
     /// Parameters that need to be injected into the conversation during intent detection.
     #[serde(rename="injectedParameters")]
-    pub injected_parameters: Option<HashMap<String, String>>,
+    pub injected_parameters: Option<HashMap<String, serde_json::Value>>,
     /// Supports text input, event input, dtmf input in the test case.
     pub input: Option<GoogleCloudDialogflowCxV3QueryInput>,
     /// If webhooks should be allowed to trigger in response to the user utterance. Often if parameters are injected, webhooks should not be enabled.
@@ -505,12 +505,12 @@ pub struct GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput {
     pub current_page: Option<GoogleCloudDialogflowCxV3Page>,
     /// Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.
     #[serde(rename="diagnosticInfo")]
-    pub diagnostic_info: Option<HashMap<String, String>>,
+    pub diagnostic_info: Option<HashMap<String, serde_json::Value>>,
     /// Output only. If this is part of a result conversation turn, the list of differences between the original run and the replay for this output, if any.
     pub differences: Option<Vec<GoogleCloudDialogflowCxV3TestRunDifference>>,
     /// The session parameters available to the bot at this point.
     #[serde(rename="sessionParameters")]
-    pub session_parameters: Option<HashMap<String, String>>,
+    pub session_parameters: Option<HashMap<String, serde_json::Value>>,
     /// Response error from the agent in the test result. If set, other output is empty.
     pub status: Option<GoogleRpcStatus>,
     /// The text responses from the agent for the turn.
@@ -1148,7 +1148,7 @@ impl client::Part for GoogleCloudDialogflowCxV3Form {}
 pub struct GoogleCloudDialogflowCxV3FormParameter {
     /// The default value of an optional parameter. If the parameter is required, the default value will be ignored.
     #[serde(rename="defaultValue")]
-    pub default_value: Option<String>,
+    pub default_value: Option<serde_json::Value>,
     /// Required. The human-readable name of the parameter, unique within the form.
     #[serde(rename="displayName")]
     pub display_name: Option<String>,
@@ -1322,7 +1322,7 @@ pub struct GoogleCloudDialogflowCxV3FulfillmentSetParameterAction {
     /// Display name of the parameter.
     pub parameter: Option<String>,
     /// The new value of the parameter. A null value clears the parameter.
-    pub value: Option<String>,
+    pub value: Option<serde_json::Value>,
 }
 
 impl client::Part for GoogleCloudDialogflowCxV3FulfillmentSetParameterAction {}
@@ -1963,7 +1963,7 @@ pub struct GoogleCloudDialogflowCxV3Match {
     #[serde(rename="matchType")]
     pub match_type: Option<String>,
     /// The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
-    pub parameters: Option<HashMap<String, String>>,
+    pub parameters: Option<HashMap<String, serde_json::Value>>,
     /// Final text input which was matched during MatchIntent. This value can be different from original input sent in request because of spelling correction or other processing.
     #[serde(rename="resolvedInput")]
     pub resolved_input: Option<String>,
@@ -2151,9 +2151,9 @@ pub struct GoogleCloudDialogflowCxV3QueryParameters {
     #[serde(rename="geoLocation")]
     pub geo_location: Option<GoogleTypeLatLng>,
     /// Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. You can reference the session parameters in the agent with the following format: $session.params.parameter-id. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
-    pub parameters: Option<HashMap<String, String>>,
+    pub parameters: Option<HashMap<String, serde_json::Value>>,
     /// This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: ``` { "telephony": { "caller_id": "+18558363987" } } ```
-    pub payload: Option<HashMap<String, String>>,
+    pub payload: Option<HashMap<String, serde_json::Value>>,
     /// Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query.
     #[serde(rename="sessionEntityTypes")]
     pub session_entity_types: Option<Vec<GoogleCloudDialogflowCxV3SessionEntityType>>,
@@ -2179,7 +2179,7 @@ pub struct GoogleCloudDialogflowCxV3QueryResult {
     pub current_page: Option<GoogleCloudDialogflowCxV3Page>,
     /// The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct's fields map can change without notice.
     #[serde(rename="diagnosticInfo")]
-    pub diagnostic_info: Option<HashMap<String, String>>,
+    pub diagnostic_info: Option<HashMap<String, serde_json::Value>>,
     /// If a DTMF was provided as input, this field will contain a copy of the DTMFInput.
     pub dtmf: Option<GoogleCloudDialogflowCxV3DtmfInput>,
     /// The Intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name` and `display_name`. This field is deprecated, please use QueryResult.match instead.
@@ -2194,7 +2194,7 @@ pub struct GoogleCloudDialogflowCxV3QueryResult {
     #[serde(rename="match")]
     pub match_: Option<GoogleCloudDialogflowCxV3Match>,
     /// The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
-    pub parameters: Option<HashMap<String, String>>,
+    pub parameters: Option<HashMap<String, serde_json::Value>>,
     /// The list of rich messages returned to the client. Responses vary from simple text messages to more sophisticated, structured payloads used to drive complex logic.
     #[serde(rename="responseMessages")]
     pub response_messages: Option<Vec<GoogleCloudDialogflowCxV3ResponseMessage>>,
@@ -2213,7 +2213,7 @@ pub struct GoogleCloudDialogflowCxV3QueryResult {
     pub trigger_intent: Option<String>,
     /// The list of webhook payload in WebhookResponse.payload, in the order of call sequence. If some webhook call fails or doesn't return any payload, an empty `Struct` would be used instead.
     #[serde(rename="webhookPayloads")]
-    pub webhook_payloads: Option<Vec<HashMap<String, String>>>,
+    pub webhook_payloads: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// The list of webhook call status in the order of call sequence.
     #[serde(rename="webhookStatuses")]
     pub webhook_statuses: Option<Vec<GoogleRpcStatus>>,
@@ -2260,7 +2260,7 @@ pub struct GoogleCloudDialogflowCxV3ResponseMessage {
     #[serde(rename="outputAudioText")]
     pub output_audio_text: Option<GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText>,
     /// Returns a response containing a custom, platform-specific payload.
-    pub payload: Option<HashMap<String, String>>,
+    pub payload: Option<HashMap<String, serde_json::Value>>,
     /// Signal that the client should play an audio clip hosted at a client-specific URI. Dialogflow uses this to construct mixed_audio. However, Dialogflow itself does not try to read or process the URI in any way.
     #[serde(rename="playAudio")]
     pub play_audio: Option<GoogleCloudDialogflowCxV3ResponseMessagePlayAudio>,
@@ -2281,7 +2281,7 @@ impl client::Part for GoogleCloudDialogflowCxV3ResponseMessage {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess {
     /// Custom metadata. Dialogflow doesn't impose any structure on this.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess {}
@@ -2304,7 +2304,7 @@ impl client::Part for GoogleCloudDialogflowCxV3ResponseMessageEndInteraction {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff {
     /// Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff {}
@@ -3257,7 +3257,7 @@ pub struct GoogleCloudLocationLocation {
     #[serde(rename="locationId")]
     pub location_id: Option<String>,
     /// Service-specific metadata. For example the available capacity at the given location.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
     pub name: Option<String>,
 }
@@ -3319,11 +3319,11 @@ pub struct GoogleLongrunningOperation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<GoogleRpcStatus>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleLongrunningOperation {}
@@ -3368,7 +3368,7 @@ pub struct GoogleRpcStatus {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

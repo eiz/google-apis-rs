@@ -196,7 +196,7 @@ pub struct GoogleApiHttpBody {
     /// The HTTP request/response body as raw binary.
     pub data: Option<String>,
     /// Application specific response metadata. Must be set in the first response for streaming APIs.
-    pub extensions: Option<Vec<HashMap<String, String>>>,
+    pub extensions: Option<Vec<HashMap<String, serde_json::Value>>>,
 }
 
 impl client::RequestValue for GoogleApiHttpBody {}
@@ -829,7 +829,7 @@ pub struct GoogleCloudApigeeV1AsyncQueryResultView {
     /// Metadata contains information like metrics, dimenstions etc of the AsyncQuery.
     pub metadata: Option<GoogleCloudApigeeV1QueryMetadata>,
     /// Rows of query result. Each row is a JSON object. Example: {sum(message_count): 1, developer_app: "(not set)",…}
-    pub rows: Option<Vec<String>>,
+    pub rows: Option<Vec<serde_json::Value>>,
     /// State of retrieving ResultView.
     pub state: Option<String>,
 }
@@ -1726,7 +1726,7 @@ impl client::ResponseResult for GoogleCloudApigeeV1DeveloperApp {}
 pub struct GoogleCloudApigeeV1DeveloperAppKey {
     /// List of API products for which the credential can be used. **Note**: Do not specify the list of API products when creating a consumer key and secret for a developer app. Instead, use the UpdateDeveloperAppKey API to make the association after the consumer key and secret are created.
     #[serde(rename="apiProducts")]
-    pub api_products: Option<Vec<String>>,
+    pub api_products: Option<Vec<serde_json::Value>>,
     /// List of attributes associated with the credential.
     pub attributes: Option<Vec<GoogleCloudApigeeV1Attribute>>,
     /// Consumer key.
@@ -3194,7 +3194,7 @@ pub struct GoogleCloudApigeeV1Metric {
     /// Metric name.
     pub name: Option<String>,
     /// List of metric values. Possible value formats include: `"values":["39.0"]` or `"values":[ { "value": "39.0", "timestamp": 1232434354} ]`
-    pub values: Option<Vec<String>>,
+    pub values: Option<Vec<serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudApigeeV1Metric {}
@@ -3317,7 +3317,7 @@ impl client::ResponseResult for GoogleCloudApigeeV1OptimizedStats {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct GoogleCloudApigeeV1OptimizedStatsNode {
     /// no description provided
-    pub data: Option<Vec<String>>,
+    pub data: Option<Vec<serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudApigeeV1OptimizedStatsNode {}
@@ -3588,7 +3588,7 @@ pub struct GoogleCloudApigeeV1Query {
     pub report_definition_id: Option<String>,
     /// Required. Time range for the query. Can use the following predefined strings to specify the time range: `last60minutes` `last24hours` `last7days` Or, specify the timeRange as a structure describing start and end timestamps in the ISO format: yyyy-mm-ddThh:mm:ssZ. Example: "timeRange": { "start": "2018-07-29T00:13:00Z", "end": "2018-08-01T00:18:00Z" }
     #[serde(rename="timeRange")]
-    pub time_range: Option<String>,
+    pub time_range: Option<serde_json::Value>,
 }
 
 impl client::RequestValue for GoogleCloudApigeeV1Query {}
@@ -4853,11 +4853,11 @@ pub struct GoogleLongrunningOperation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<GoogleRpcStatus>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleLongrunningOperation {}
@@ -4928,7 +4928,7 @@ pub struct GoogleRpcStatus {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

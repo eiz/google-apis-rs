@@ -295,7 +295,7 @@ pub struct ApnsConfig {
     /// HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns) for supported headers such as `apns-expiration` and `apns-priority`.
     pub headers: Option<HashMap<String, String>>,
     /// APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body. The backend sets a default value for `apns-expiration` of 30 days and a default value for `apns-priority` of 10 if not explicitly set.
-    pub payload: Option<HashMap<String, String>>,
+    pub payload: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for ApnsConfig {}
@@ -458,7 +458,7 @@ pub struct WebpushConfig {
     /// HTTP headers defined in webpush protocol. Refer to [Webpush protocol](https://tools.ietf.org/html/rfc8030#section-5) for supported headers, e.g. "TTL": "15".
     pub headers: Option<HashMap<String, String>>,
     /// Web Notification options as a JSON object. Supports Notification instance properties as defined in [Web Notification API](https://developer.mozilla.org/en-US/docs/Web/API/Notification). If present, "title" and "body" fields override [google.firebase.fcm.v1.Notification.title] and [google.firebase.fcm.v1.Notification.body].
-    pub notification: Option<HashMap<String, String>>,
+    pub notification: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for WebpushConfig {}

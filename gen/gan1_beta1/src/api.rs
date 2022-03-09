@@ -766,11 +766,11 @@ pub struct Report {
     /// The number of matching rows before paging is applied.
     pub matching_row_count: Option<String>,
     /// The rows of data for the report
-    pub rows: Option<Vec<Vec<String>>>,
+    pub rows: Option<Vec<Vec<serde_json::Value>>>,
     /// The start of the date range for this report, inclusive.
     pub start_date: Option<String>,
     /// The totals rows for the report
-    pub totals_rows: Option<Vec<Vec<String>>>,
+    pub totals_rows: Option<Vec<Vec<serde_json::Value>>>,
     /// The report type.
     #[serde(rename="type")]
     pub type_: Option<String>,

@@ -225,7 +225,7 @@ pub struct GoogleCloudRecommenderV1Insight {
     /// Category being targeted by the insight.
     pub category: Option<String>,
     /// A struct of custom fields to explain the insight. Example: "grantedPermissionsCount": "1000"
-    pub content: Option<HashMap<String, String>>,
+    pub content: Option<HashMap<String, serde_json::Value>>,
     /// Free-form human readable summary in English. The maximum length is 500 characters.
     pub description: Option<String>,
     /// Fingerprint of the Insight. Provides optimistic locking when updating states.
@@ -439,7 +439,7 @@ pub struct GoogleCloudRecommenderV1Operation {
     pub path: Option<String>,
     /// Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers. * Example: ``` { "/versions/*/name" : "it-123" "/versions/*/targetSize/percent": 20 } ``` * Example: ``` { "/bindings/*/role": "roles/owner" "/bindings/*/condition" : null } ``` * Example: ``` { "/bindings/*/role": "roles/owner" "/bindings/*/members/*" : ["x@example.com", "y@example.com"] } ``` When both path_filters and path_value_matchers are set, an implicit AND must be performed.
     #[serde(rename="pathFilters")]
-    pub path_filters: Option<HashMap<String, String>>,
+    pub path_filters: Option<HashMap<String, serde_json::Value>>,
     /// Similar to path_filters, this contains set of filters to apply if `path` field refers to array elements. This is meant to support value matching beyond exact match. To perform exact match, use path_filters. When both path_filters and path_value_matchers are set, an implicit AND must be performed.
     #[serde(rename="pathValueMatchers")]
     pub path_value_matchers: Option<HashMap<String, GoogleCloudRecommenderV1ValueMatcher>>,
@@ -455,7 +455,7 @@ pub struct GoogleCloudRecommenderV1Operation {
     #[serde(rename="sourceResource")]
     pub source_resource: Option<String>,
     /// Value for the `path` field. Will be set for actions:'add'/'replace'. Maybe set for action: 'test'. Either this or `value_matcher` will be set for 'test' operation. An exact match must be performed.
-    pub value: Option<String>,
+    pub value: Option<serde_json::Value>,
     /// Can be set for action 'test' for advanced matching for the value of 'path' field. Either this or `value` will be set for 'test' operation.
     #[serde(rename="valueMatcher")]
     pub value_matcher: Option<GoogleCloudRecommenderV1ValueMatcher>,
@@ -549,7 +549,7 @@ pub struct GoogleCloudRecommenderV1RecommendationContent {
     #[serde(rename="operationGroups")]
     pub operation_groups: Option<Vec<GoogleCloudRecommenderV1OperationGroup>>,
     /// Condensed overview information about the recommendation.
-    pub overview: Option<HashMap<String, String>>,
+    pub overview: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudRecommenderV1RecommendationContent {}
@@ -591,7 +591,7 @@ impl client::Part for GoogleCloudRecommenderV1RecommendationStateInfo {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct GoogleCloudRecommenderV1SecurityProjection {
     /// Additional security impact details that is provided by the recommender.
-    pub details: Option<HashMap<String, String>>,
+    pub details: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudRecommenderV1SecurityProjection {}

@@ -385,7 +385,7 @@ impl client::ResponseResult for Output {}
 pub struct Update {
     /// The input features for this instance.
     #[serde(rename="csvInstance")]
-    pub csv_instance: Option<Vec<String>>,
+    pub csv_instance: Option<Vec<serde_json::Value>>,
     /// The generic output value - could be regression or class label.
     pub output: Option<String>,
 }
@@ -572,7 +572,7 @@ impl client::Part for AnalyzeModelDescription {}
 pub struct InputInput {
     /// A list of input features, these can be strings or doubles.
     #[serde(rename="csvInstance")]
-    pub csv_instance: Option<Vec<String>>,
+    pub csv_instance: Option<Vec<serde_json::Value>>,
 }
 
 impl client::NestedType for InputInput {}
@@ -587,7 +587,7 @@ impl client::Part for InputInput {}
 pub struct InsertTrainingInstances {
     /// The input features for this instance.
     #[serde(rename="csvInstance")]
-    pub csv_instance: Option<Vec<String>>,
+    pub csv_instance: Option<Vec<serde_json::Value>>,
     /// The generic output value - could be regression or class label.
     pub output: Option<String>,
 }

@@ -1741,7 +1741,7 @@ pub struct JobConfigurationTableCopy {
     pub destination_encryption_configuration: Option<EncryptionConfiguration>,
     /// [Optional] The time when the destination table expires. Expired tables will be deleted and their storage reclaimed.
     #[serde(rename="destinationExpirationTime")]
-    pub destination_expiration_time: Option<String>,
+    pub destination_expiration_time: Option<serde_json::Value>,
     /// [Required] The destination table
     #[serde(rename="destinationTable")]
     pub destination_table: Option<TableReference>,
@@ -2041,7 +2041,7 @@ impl client::Part for JsonObject {}
 /// 
 /// This type is not used in any activity, and only used as *part* of another schema.
 /// 
-/// The contained type is `Option<String>`.
+/// The contained type is `Option<serde_json::Value>`.
 /// 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct JsonValue(json::Value);
@@ -3074,7 +3074,7 @@ impl client::ResponseResult for Table {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct TableCell {
     /// no description provided
-    pub v: Option<String>,
+    pub v: Option<serde_json::Value>,
 }
 
 impl client::Part for TableCell {}

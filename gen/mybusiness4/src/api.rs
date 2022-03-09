@@ -467,7 +467,7 @@ pub struct Attribute {
     /// [AttributeValueType](/my-business/reference/rest/v4/AttributeValueType).
     /// This is a repeated field where multiple attribute values may be provided.
     /// Attribute types only support one value.
-    pub values: Option<Vec<String>>,
+    pub values: Option<Vec<serde_json::Value>>,
 }
 
 impl client::Resource for Attribute {}
@@ -532,7 +532,7 @@ pub struct AttributeValueMetadata {
     #[serde(rename="displayName")]
     pub display_name: Option<String>,
     /// The attribute value.
-    pub value: Option<String>,
+    pub value: Option<serde_json::Value>,
 }
 
 impl client::Part for AttributeValueMetadata {}

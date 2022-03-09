@@ -395,7 +395,7 @@ pub struct Sqlresponse {
     /// The kind of item this is. For responses to SQL queries, this is always fusiontables#sqlresponse.
     pub kind: Option<String>,
     /// The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
-    pub rows: Option<Vec<Vec<String>>>,
+    pub rows: Option<Vec<Vec<serde_json::Value>>>,
 }
 
 impl client::ResponseResult for Sqlresponse {}

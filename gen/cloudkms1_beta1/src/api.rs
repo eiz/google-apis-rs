@@ -834,7 +834,7 @@ pub struct Location {
     pub location_id: Option<String>,
     /// Service-specific metadata. For example the available capacity at the given
     /// location.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// Cross-service attributes for the location. For example
     /// 
     /// ````text

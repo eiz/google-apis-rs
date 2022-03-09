@@ -162,7 +162,7 @@ impl<'a, > PolicyAnalyzer<> {
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct GoogleCloudPolicyanalyzerV1Activity {
     /// A struct of custom fields to explain the activity.
-    pub activity: Option<HashMap<String, String>>,
+    pub activity: Option<HashMap<String, serde_json::Value>>,
     /// The type of the activity.
     #[serde(rename="activityType")]
     pub activity_type: Option<String>,

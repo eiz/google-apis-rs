@@ -312,7 +312,7 @@ pub struct GoogleCloudPrivatecatalogV1beta1Product {
     /// additionalProperties: false
     /// ````
     #[serde(rename="displayMetadata")]
-    pub display_metadata: Option<HashMap<String, String>>,
+    pub display_metadata: Option<HashMap<String, serde_json::Value>>,
     /// Output only. The icon URI of the product.
     #[serde(rename="iconUri")]
     pub icon_uri: Option<String>,
@@ -414,7 +414,7 @@ pub struct GoogleCloudPrivatecatalogV1beta1Version {
     /// Output only. The asset which has been validated and is ready to be
     /// provisioned. See
     /// google.cloud.privatecatalogproducer.v1beta.Version.asset for details.
-    pub asset: Option<HashMap<String, String>>,
+    pub asset: Option<HashMap<String, serde_json::Value>>,
     /// Output only. The time when the version was created.
     #[serde(rename="createTime")]
     pub create_time: Option<String>,

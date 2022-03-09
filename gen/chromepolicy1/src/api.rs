@@ -449,7 +449,7 @@ pub struct GoogleChromePolicyV1PolicyValue {
     #[serde(rename="policySchema")]
     pub policy_schema: Option<String>,
     /// The value of the policy that is compatible with the schema that it is associated with.
-    pub value: Option<HashMap<String, String>>,
+    pub value: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleChromePolicyV1PolicyValue {}

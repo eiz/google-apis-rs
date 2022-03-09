@@ -1574,11 +1574,11 @@ pub struct Operation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<Status>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Resource for Operation {}
@@ -1847,7 +1847,7 @@ impl client::Part for RelationshipAttributes {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Resource {
     /// The content of the resource, in which some sensitive fields are removed and may not be present.
-    pub data: Option<HashMap<String, String>>,
+    pub data: Option<HashMap<String, serde_json::Value>>,
     /// The URL of the discovery document containing the resource's JSON schema. Example: `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest` This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
     #[serde(rename="discoveryDocumentUri")]
     pub discovery_document_uri: Option<String>,
@@ -1876,7 +1876,7 @@ impl client::Part for Resource {}
 pub struct ResourceSearchResult {
     /// The additional searchable attributes of this resource. The attributes may vary from one resource type to another. Examples: `projectId` for Project, `dnsName` for DNS ManagedZone. This field contains a subset of the resource metadata fields that are returned by the List or Get APIs provided by the corresponding GCP service (e.g., Compute Engine). see [API references and supported searchable attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types) to see which fields are included. You can search values of these fields through free text search. However, you should not consume the field programically as the field names and values may change as the GCP service updates to a new incompatible API version. To search against the `additional_attributes`: * use a free text query to match the attributes values. Example: to search `additional_attributes = { dnsName: "foobar" }`, you can issue a query `foobar`.
     #[serde(rename="additionalAttributes")]
-    pub additional_attributes: Option<HashMap<String, String>>,
+    pub additional_attributes: Option<HashMap<String, serde_json::Value>>,
     /// The type of this resource. Example: `compute.googleapis.com/Disk`. To search against the `asset_type`: * specify the `asset_type` field in your search request.
     #[serde(rename="assetType")]
     pub asset_type: Option<String>,
@@ -2071,7 +2071,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }
@@ -2165,7 +2165,7 @@ impl client::Part for VersionedPackage {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct VersionedResource {
     /// JSON representation of the resource as defined by the corresponding service providing this resource. Example: If the resource is an instance provided by Compute Engine, this field will contain the JSON representation of the instance as defined by Compute Engine: `https://cloud.google.com/compute/docs/reference/rest/v1/instances`. You can find the resource definition for each supported resource type in this table: `https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types`
-    pub resource: Option<HashMap<String, String>>,
+    pub resource: Option<HashMap<String, serde_json::Value>>,
     /// API version of the resource. Example: If the resource is an instance provided by Compute Engine v1 API as defined in `https://cloud.google.com/compute/docs/reference/rest/v1/instances`, version will be "v1".
     pub version: Option<String>,
 }

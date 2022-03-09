@@ -253,7 +253,7 @@ pub struct GoogleCloudBillingBudgetsV1Filter {
     #[serde(rename="customPeriod")]
     pub custom_period: Option<GoogleCloudBillingBudgetsV1CustomPeriod>,
     /// Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. If omitted, the report includes all labeled and unlabeled usage. An object containing a single `"key": value` pair. Example: `{ "name": "wrench" }`. _Currently, multiple entries or multiple values per entry are not allowed._
-    pub labels: Option<HashMap<String, Vec<String>>>,
+    pub labels: Option<HashMap<String, Vec<serde_json::Value>>>,
     /// Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report includes all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
     pub projects: Option<Vec<String>>,
     /// Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report includes usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.

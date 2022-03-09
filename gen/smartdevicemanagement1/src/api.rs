@@ -173,7 +173,7 @@ pub struct GoogleHomeEnterpriseSdmV1Device {
     #[serde(rename="parentRelations")]
     pub parent_relations: Option<Vec<GoogleHomeEnterpriseSdmV1ParentRelation>>,
     /// Output only. Device traits.
-    pub traits: Option<HashMap<String, String>>,
+    pub traits: Option<HashMap<String, serde_json::Value>>,
     /// Output only. Type of the device for general display purposes. For example: "THERMOSTAT". The device type should not be used to deduce or infer functionality of the actual device it is assigned to. Instead, use the returned traits for the device.
     #[serde(rename="type")]
     pub type_: Option<String>,
@@ -196,7 +196,7 @@ pub struct GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest {
     /// The command name to execute, represented by the fully qualified protobuf message name.
     pub command: Option<String>,
     /// The command message to execute, represented as a Struct.
-    pub params: Option<HashMap<String, String>>,
+    pub params: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::RequestValue for GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest {}
@@ -214,7 +214,7 @@ impl client::RequestValue for GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandReque
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse {
     /// The results of executing the command.
-    pub results: Option<HashMap<String, String>>,
+    pub results: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse {}
@@ -313,7 +313,7 @@ pub struct GoogleHomeEnterpriseSdmV1Room {
     /// Output only. The resource name of the room. For example: "enterprises/XYZ/structures/ABC/rooms/123".
     pub name: Option<String>,
     /// Room traits.
-    pub traits: Option<HashMap<String, String>>,
+    pub traits: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleHomeEnterpriseSdmV1Room {}
@@ -333,7 +333,7 @@ pub struct GoogleHomeEnterpriseSdmV1Structure {
     /// Output only. The resource name of the structure. For example: "enterprises/XYZ/structures/ABC".
     pub name: Option<String>,
     /// Structure traits.
-    pub traits: Option<HashMap<String, String>>,
+    pub traits: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleHomeEnterpriseSdmV1Structure {}

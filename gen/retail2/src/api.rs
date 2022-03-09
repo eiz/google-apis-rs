@@ -175,7 +175,7 @@ pub struct GoogleApiHttpBody {
     /// The HTTP request/response body as raw binary.
     pub data: Option<String>,
     /// Application specific response metadata. Must be set in the first response for streaming APIs.
-    pub extensions: Option<Vec<HashMap<String, String>>>,
+    pub extensions: Option<Vec<HashMap<String, serde_json::Value>>>,
 }
 
 impl client::ResponseResult for GoogleApiHttpBody {}
@@ -653,7 +653,7 @@ pub struct GoogleCloudRetailV2PredictRequest {
     #[serde(rename="pageToken")]
     pub page_token: Option<String>,
     /// Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of an product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category.
-    pub params: Option<HashMap<String, String>>,
+    pub params: Option<HashMap<String, serde_json::Value>>,
     /// Required. Context about the user, what they are looking at and what action they took to trigger the predict request. Note that this user event detail won't be ingested to userEvent logs. Thus, a separate userEvent write request is required for event logging.
     #[serde(rename="userEvent")]
     pub user_event: Option<GoogleCloudRetailV2UserEvent>,
@@ -701,7 +701,7 @@ pub struct GoogleCloudRetailV2PredictResponsePredictionResult {
     /// ID of the recommended product
     pub id: Option<String>,
     /// Additional product metadata / annotations. Possible values: * `product`: JSON representation of the product. Will be set if `returnProduct` is set to true in `PredictRequest.params`. * `score`: Prediction score in double value. Will be set if `returnScore` is set to true in `PredictRequest.params`.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudRetailV2PredictResponsePredictionResult {}
@@ -1341,7 +1341,7 @@ pub struct GoogleCloudRetailV2SearchResponseSearchResult {
     pub product: Option<GoogleCloudRetailV2Product>,
     /// The rollup matching variant Product attributes. The key is one of the SearchRequest.variant_rollup_keys. The values are the merged and de-duplicated Product attributes. Notice that the rollup values are respect filter. For example, when filtering by "colorFamilies:ANY(\"red\")" and rollup "colorFamilies", only "red" is returned. For textual and numerical attributes, the rollup values is a list of string or double values with type google.protobuf.ListValue. For example, if there are two variants with colors "red" and "blue", the rollup values are { key: "colorFamilies" value { list_value { values { string_value: "red" } values { string_value: "blue" } } } } For FulfillmentInfo, the rollup values is a double value with type google.protobuf.Value. For example, `{key: "pickupInStore.store1" value { number_value: 10 }}` means a there are 10 variants in this product are available in the store "store1".
     #[serde(rename="variantRollupValues")]
-    pub variant_rollup_values: Option<HashMap<String, String>>,
+    pub variant_rollup_values: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudRetailV2SearchResponseSearchResult {}
@@ -1577,11 +1577,11 @@ pub struct GoogleLongrunningOperation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<GoogleRpcStatus>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleLongrunningOperation {}
@@ -1612,7 +1612,7 @@ pub struct GoogleRpcStatus {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

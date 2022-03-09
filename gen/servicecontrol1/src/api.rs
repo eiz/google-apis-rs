@@ -426,7 +426,7 @@ impl client::Part for Distribution {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Exemplar {
     /// Contextual information about the example value. Examples are: Trace: type.googleapis.com/google.monitoring.v3.SpanContext Literal string: type.googleapis.com/google.protobuf.StringValue Labels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabels There may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
-    pub attachments: Option<Vec<HashMap<String, String>>>,
+    pub attachments: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// The observation (sampling) time of the above value.
     pub timestamp: Option<String>,
     /// Value of the exemplar point. This value determines to which bucket the exemplar belongs.
@@ -558,7 +558,7 @@ pub struct LogEntry {
     pub operation: Option<LogEntryOperation>,
     /// The log entry payload, represented as a protocol buffer that is expressed as a JSON object. The only accepted type currently is AuditLog.
     #[serde(rename="protoPayload")]
-    pub proto_payload: Option<HashMap<String, String>>,
+    pub proto_payload: Option<HashMap<String, serde_json::Value>>,
     /// The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
     pub severity: Option<String>,
     /// Optional. Source code location information associated with the log entry, if any.
@@ -566,7 +566,7 @@ pub struct LogEntry {
     pub source_location: Option<LogEntrySourceLocation>,
     /// The log entry payload, represented as a structure that is expressed as a JSON object.
     #[serde(rename="structPayload")]
-    pub struct_payload: Option<HashMap<String, String>>,
+    pub struct_payload: Option<HashMap<String, serde_json::Value>>,
     /// The log entry payload, represented as a Unicode string (UTF-8).
     #[serde(rename="textPayload")]
     pub text_payload: Option<String>,
@@ -700,7 +700,7 @@ pub struct Operation {
     #[serde(rename="endTime")]
     pub end_time: Option<String>,
     /// Unimplemented.
-    pub extensions: Option<Vec<HashMap<String, String>>>,
+    pub extensions: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// DO NOT USE. This is an experimental field.
     pub importance: Option<String>,
     /// Labels describing the operation. Only the following labels are allowed: - Labels describing monitored resources as defined in the service configuration. - Default labels of metric values. When specified, labels defined in the metric value override these default. - The following labels defined by Google Cloud Platform: - `cloud.googleapis.com/location` describing the location where the operation happened, - `servicecontrol.googleapis.com/user_agent` describing the user agent of the API request, - `servicecontrol.googleapis.com/service_agent` describing the service used to handle the API request (e.g. ESP), - `servicecontrol.googleapis.com/platform` describing the platform where the API is served, such as App Engine, Compute Engine, or Kubernetes Engine.
@@ -908,7 +908,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

@@ -175,7 +175,7 @@ pub struct GoogleApiHttpBody {
     /// The HTTP request/response body as raw binary.
     pub data: Option<String>,
     /// Application specific response metadata. Must be set in the first response for streaming APIs.
-    pub extensions: Option<Vec<HashMap<String, String>>>,
+    pub extensions: Option<Vec<HashMap<String, serde_json::Value>>>,
 }
 
 impl client::ResponseResult for GoogleApiHttpBody {}
@@ -647,7 +647,7 @@ pub struct GoogleCloudRecommendationengineV1beta1PredictRequest {
     #[serde(rename="pageToken")]
     pub page_token: Option<String>,
     /// Optional. Additional domain specific parameters for the predictions. Allowed values: * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem object will be returned in the `PredictResponse.PredictionResult.itemMetadata` object in the method response. * `returnItemScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned item will be set in the `metadata` field in the prediction response. The given 'score' indicates the probability of an item being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular items instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request level control and adjust prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request level control and adjust prediction results based on product category.
-    pub params: Option<HashMap<String, String>>,
+    pub params: Option<HashMap<String, serde_json::Value>>,
     /// Required. Context about the user, what they are looking at and what action they took to trigger the predict request. Note that this user event detail won't be ingested to userEvent logs. Thus, a separate userEvent write request is required for event logging.
     #[serde(rename="userEvent")]
     pub user_event: Option<GoogleCloudRecommendationengineV1beta1UserEvent>,
@@ -674,7 +674,7 @@ pub struct GoogleCloudRecommendationengineV1beta1PredictResponse {
     #[serde(rename="itemsMissingInCatalog")]
     pub items_missing_in_catalog: Option<Vec<String>>,
     /// Additional domain specific prediction response metadata.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// If empty, the list is complete. If nonempty, the token to pass to the next request's PredictRequest.page_token.
     #[serde(rename="nextPageToken")]
     pub next_page_token: Option<String>,
@@ -698,7 +698,7 @@ pub struct GoogleCloudRecommendationengineV1beta1PredictResponsePredictionResult
     pub id: Option<String>,
     /// Additional item metadata / annotations. Possible values: * `catalogItem`: JSON representation of the catalogItem. Will be set if `returnCatalogItem` is set to true in `PredictRequest.params`. * `score`: Prediction score in double value. Will be set if `returnItemScore` is set to true in `PredictRequest.params`.
     #[serde(rename="itemMetadata")]
-    pub item_metadata: Option<HashMap<String, String>>,
+    pub item_metadata: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::Part for GoogleCloudRecommendationengineV1beta1PredictResponsePredictionResult {}
@@ -1029,11 +1029,11 @@ pub struct GoogleLongrunningOperation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<GoogleRpcStatus>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleLongrunningOperation {}
@@ -1064,7 +1064,7 @@ pub struct GoogleRpcStatus {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

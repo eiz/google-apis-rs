@@ -712,7 +712,7 @@ impl client::Part for Error {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Exemplar {
     /// Contextual information about the example value. Examples are:Trace: type.googleapis.com/google.monitoring.v3.SpanContextLiteral string: type.googleapis.com/google.protobuf.StringValueLabels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabelsThere may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
-    pub attachments: Option<Vec<HashMap<String, String>>>,
+    pub attachments: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// The observation (sampling) time of the above value.
     pub timestamp: Option<String>,
     /// Value of the exemplar point. This value determines to which bucket the exemplar belongs.
@@ -1514,7 +1514,7 @@ impl client::ResponseResult for MonitoredResourceDescriptor {}
 pub struct MonitoredResourceMetadata {
     /// Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including "machine_image", "vpc", "subnet_id", "security_group", "name", etc. System label values can be only strings, Boolean values, or a list of strings. For example: { "name": "my-test-instance", "security_group": ["a", "b", "c"], "spot_instance": false } 
     #[serde(rename="systemLabels")]
-    pub system_labels: Option<HashMap<String, String>>,
+    pub system_labels: Option<HashMap<String, serde_json::Value>>,
     /// Output only. A map of user-defined metadata labels.
     #[serde(rename="userLabels")]
     pub user_labels: Option<HashMap<String, String>>,
@@ -1939,7 +1939,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

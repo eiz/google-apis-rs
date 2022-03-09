@@ -182,7 +182,7 @@ pub struct GoogleLongrunning_Operation {
     /// is the original method name.  For example, if the original method name
     /// is `TakeSnapshot()`, the inferred response type is
     /// `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that
     /// originally returns it. If you use the default HTTP mapping, the
     /// `name` should have the format of `operations/some/unique/name`.
@@ -193,7 +193,7 @@ pub struct GoogleLongrunning_Operation {
     /// contains progress information and common metadata such as create time.
     /// Some services might not provide such metadata.  Any method that returns a
     /// long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleLongrunning_Operation {}
@@ -360,7 +360,7 @@ impl client::Part for GoogleCloudVideointelligenceV1beta1_VideoContext {}
 pub struct GoogleRpc_Status {
     /// A list of messages that carry the error details.  There is a common set of
     /// message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A developer-facing error message, which should be in English. Any

@@ -145,9 +145,9 @@ pub struct Bin {
     /// The proportion of users that experienced this bin's value for the given metric.
     pub density: Option<f64>,
     /// End is the end of the data bin. If end is not populated, then the bin has no end and is valid from start to +inf.
-    pub end: Option<String>,
+    pub end: Option<serde_json::Value>,
     /// Start is the beginning of the data bin.
-    pub start: Option<String>,
+    pub start: Option<serde_json::Value>,
 }
 
 impl client::Part for Bin {}
@@ -196,7 +196,7 @@ impl client::Part for Metric {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Percentiles {
     /// 75% of users experienced the given metric at or below this value.
-    pub p75: Option<String>,
+    pub p75: Option<serde_json::Value>,
 }
 
 impl client::Part for Percentiles {}
