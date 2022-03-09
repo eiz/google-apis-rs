@@ -1906,7 +1906,7 @@ pub struct DataFilterValueRange {
     #[serde(rename="majorDimension")]
     pub major_dimension: Option<String>,
     /// The data to be written. If the provided values exceed any of the ranges matched by the data filter then the request fails. If the provided values are less than the matched ranges only the specified values are written, existing values in the matched ranges remain unaffected.
-    pub values: Option<Vec<Vec<String>>>,
+    pub values: Option<Vec<Vec<serde_json::Value>>>,
 }
 
 impl client::Part for DataFilterValueRange {}
@@ -5314,7 +5314,7 @@ pub struct ValueRange {
     /// The range the values cover, in A1 notation. For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
     pub range: Option<String>,
     /// The data that was read or to be written. This is an array of arrays, the outer array representing all the data and each inner array representing a major dimension. Each item in the inner array corresponds with one cell. For output, empty trailing rows and columns will not be included. For input, supported value types are: bool, string, and double. Null values will be skipped. To set a cell to an empty value, set the string value to an empty string.
-    pub values: Option<Vec<Vec<String>>>,
+    pub values: Option<Vec<Vec<serde_json::Value>>>,
 }
 
 impl client::RequestValue for ValueRange {}

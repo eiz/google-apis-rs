@@ -225,7 +225,7 @@ pub struct Result {
     /// The MIME type of the search result.
     pub mime: Option<String>,
     /// Contains [PageMap](https://developers.google.com/custom-search/docs/structured_data#pagemaps) information for this search result.
-    pub pagemap: Option<HashMap<String, String>>,
+    pub pagemap: Option<HashMap<String, serde_json::Value>>,
     /// The snippet of the search result, in plain text.
     pub snippet: Option<String>,
     /// The title of the search result, in plain text.
@@ -248,7 +248,7 @@ impl client::Part for Result {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Search {
     /// Metadata and refinements associated with the given search engine, including: * The name of the search engine that was used for the query. * A set of [facet objects](https://developers.google.com/custom-search/docs/refinements#create) (refinements) you can use for refining a search.
-    pub context: Option<HashMap<String, String>>,
+    pub context: Option<HashMap<String, serde_json::Value>>,
     /// The current set of custom search results.
     pub items: Option<Vec<Result>>,
     /// Unique identifier for the type of current object. For this API, it is customsearch#search.

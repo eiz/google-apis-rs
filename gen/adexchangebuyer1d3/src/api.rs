@@ -526,19 +526,19 @@ pub struct PerformanceReport {
     pub bid_request_rate: Option<f64>,
     /// Rate of various prefiltering statuses per match. Please refer to the callout-status-codes.txt file for different statuses.
     #[serde(rename="calloutStatusRate")]
-    pub callout_status_rate: Option<Vec<String>>,
+    pub callout_status_rate: Option<Vec<serde_json::Value>>,
     /// Average QPS for cookie matcher operations.
     #[serde(rename="cookieMatcherStatusRate")]
-    pub cookie_matcher_status_rate: Option<Vec<String>>,
+    pub cookie_matcher_status_rate: Option<Vec<serde_json::Value>>,
     /// Rate of ads with a given status. Please refer to the creative-status-codes.txt file for different statuses.
     #[serde(rename="creativeStatusRate")]
-    pub creative_status_rate: Option<Vec<String>>,
+    pub creative_status_rate: Option<Vec<serde_json::Value>>,
     /// The number of bid responses that were filtered due to a policy violation or other errors.
     #[serde(rename="filteredBidRate")]
     pub filtered_bid_rate: Option<f64>,
     /// Average QPS for hosted match operations.
     #[serde(rename="hostedMatchStatusRate")]
-    pub hosted_match_status_rate: Option<Vec<String>>,
+    pub hosted_match_status_rate: Option<Vec<serde_json::Value>>,
     /// The number of potential queries based on your pretargeting settings.
     #[serde(rename="inventoryMatchRate")]
     pub inventory_match_rate: Option<f64>,

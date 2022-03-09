@@ -535,7 +535,7 @@ pub struct GoogleCloudPrivatecatalogproducerV1beta1Product {
     /// additionalProperties: false
     /// ````
     #[serde(rename="displayMetadata")]
-    pub display_metadata: Option<HashMap<String, String>>,
+    pub display_metadata: Option<HashMap<String, serde_json::Value>>,
     /// Output only. The public accessible URI of the icon uploaded by
     /// PrivateCatalogProducer.UploadIcon.
     /// 
@@ -610,7 +610,7 @@ impl client::RequestValue for GoogleCloudPrivatecatalogproducerV1beta1UploadIcon
 pub struct GoogleCloudPrivatecatalogproducerV1beta1Version {
     /// Output only. The asset which has been validated and is ready to be
     /// provisioned. See Version.original_asset for the schema.
-    pub asset: Option<HashMap<String, String>>,
+    pub asset: Option<HashMap<String, serde_json::Value>>,
     /// Output only. The time when the version was created.
     #[serde(rename="createTime")]
     pub create_time: Option<String>,
@@ -649,7 +649,7 @@ pub struct GoogleCloudPrivatecatalogproducerV1beta1Version {
     ///           type: string
     /// ````
     #[serde(rename="originalAsset")]
-    pub original_asset: Option<HashMap<String, String>>,
+    pub original_asset: Option<HashMap<String, serde_json::Value>>,
     /// Output only. The time when the version was last updated.
     #[serde(rename="updateTime")]
     pub update_time: Option<String>,
@@ -1082,7 +1082,7 @@ pub struct GoogleLongrunningOperation {
     /// contains progress information and common metadata such as create time.
     /// Some services might not provide such metadata.  Any method that returns a
     /// long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that
     /// originally returns it. If you use the default HTTP mapping, the
     /// `name` should be a resource name ending with `operations/{unique_id}`.
@@ -1095,7 +1095,7 @@ pub struct GoogleLongrunningOperation {
     /// is the original method name.  For example, if the original method name
     /// is `TakeSnapshot()`, the inferred response type is
     /// `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for GoogleLongrunningOperation {}
@@ -1146,7 +1146,7 @@ pub struct GoogleRpcStatus {
     pub code: Option<i32>,
     /// A list of messages that carry the error details.  There is a common set of
     /// message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any
     /// user-facing error message should be localized and sent in the
     /// google.rpc.Status.details field, or localized by the client.

@@ -405,7 +405,7 @@ pub struct ApplicationPolicy {
     pub lock_task_allowed: Option<bool>,
     /// Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: *type* *JSON value* BOOL true or false STRING string INTEGER number CHOICE string MULTISELECT array of strings HIDDEN string BUNDLE_ARRAY array of objects 
     #[serde(rename="managedConfiguration")]
-    pub managed_configuration: Option<HashMap<String, String>>,
+    pub managed_configuration: Option<HashMap<String, serde_json::Value>>,
     /// The managed configurations template for the app, saved from the managed configurations iframe. This field is ignored if managed_configuration is set.
     #[serde(rename="managedConfigurationTemplate")]
     pub managed_configuration_template: Option<ManagedConfigurationTemplate>,
@@ -1320,7 +1320,7 @@ impl client::Part for ManagedConfigurationTemplate {}
 pub struct ManagedProperty {
     /// The default value of the property. BUNDLE_ARRAY properties don't have a default value.
     #[serde(rename="defaultValue")]
-    pub default_value: Option<String>,
+    pub default_value: Option<serde_json::Value>,
     /// A longer description of the property, providing more detail of what it affects. Localized.
     pub description: Option<String>,
     /// For CHOICE or MULTISELECT properties, the list of possible entries.
@@ -1424,7 +1424,7 @@ impl client::Part for NetworkInfo {}
 pub struct NonComplianceDetail {
     /// If the policy setting could not be applied, the current value of the setting on the device.
     #[serde(rename="currentValue")]
-    pub current_value: Option<String>,
+    pub current_value: Option<serde_json::Value>,
     /// For settings with nested fields, if a particular nested field is out of compliance, this specifies the full path to the offending field. The path is formatted in the same way the policy JSON field would be referenced in JavaScript, that is: 1) For object-typed fields, the field name is followed by a dot then by a subfield name. 2) For array-typed fields, the field name is followed by the array index enclosed in brackets. For example, to indicate a problem with the url field in the externalData field in the 3rd application, the path would be applications[2].externalData.url
     #[serde(rename="fieldPath")]
     pub field_path: Option<String>,
@@ -1499,11 +1499,11 @@ pub struct Operation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<Status>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id}.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for Operation {}
@@ -1814,7 +1814,7 @@ pub struct Policy {
     pub onc_certificate_providers: Option<Vec<OncCertificateProvider>>,
     /// Network configuration for the device. See configure networks for more information.
     #[serde(rename="openNetworkConfiguration")]
-    pub open_network_configuration: Option<HashMap<String, String>>,
+    pub open_network_configuration: Option<HashMap<String, serde_json::Value>>,
     /// Whether using NFC to beam data from apps is disabled.
     #[serde(rename="outgoingBeamDisabled")]
     pub outgoing_beam_disabled: Option<bool>,
@@ -2140,7 +2140,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

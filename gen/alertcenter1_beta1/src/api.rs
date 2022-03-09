@@ -189,7 +189,7 @@ pub struct Alert {
     #[serde(rename="customerId")]
     pub customer_id: Option<String>,
     /// Optional. The data associated with this alert, for example google.apps.alertcenter.type.DeviceCompromised.
-    pub data: Option<HashMap<String, String>>,
+    pub data: Option<HashMap<String, serde_json::Value>>,
     /// Output only. `True` if this alert is marked for deletion.
     pub deleted: Option<bool>,
     /// Optional. The time the event that caused this alert ceased being active. If provided, the end time must not be earlier than the start time. If not provided, it indicates an ongoing alert.
@@ -488,7 +488,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

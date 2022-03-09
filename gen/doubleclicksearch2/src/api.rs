@@ -493,7 +493,7 @@ impl client::RequestValue for ReportRequest {}
 /// This type is not used in any activity, and only used as *part* of another schema.
 /// 
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
-pub struct ReportRow(Option<HashMap<String, String>>);
+pub struct ReportRow(Option<HashMap<String, serde_json::Value>>);
 
 impl client::Part for ReportRow {}
 
@@ -606,7 +606,7 @@ pub struct ReportRequestFilters {
     /// Operator to use in the filter. See the filter reference for a list of available operators.
     pub operator: Option<String>,
     /// A list of values to filter the column value against.\ The maximum number of filter values per request is 300.
-    pub values: Option<Vec<String>>,
+    pub values: Option<Vec<serde_json::Value>>,
 }
 
 impl client::NestedType for ReportRequestFilters {}

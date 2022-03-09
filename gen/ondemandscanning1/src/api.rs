@@ -954,11 +954,11 @@ pub struct Operation {
     /// The error result of the operation in case of failure or cancellation.
     pub error: Option<Status>,
     /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-    pub metadata: Option<HashMap<String, String>>,
+    pub metadata: Option<HashMap<String, serde_json::Value>>,
     /// The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
     pub name: Option<String>,
     /// The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-    pub response: Option<HashMap<String, String>>,
+    pub response: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::ResponseResult for Operation {}
@@ -1069,7 +1069,7 @@ impl client::Part for ProjectRepoId {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Recipe {
     /// Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint. Since the arguments field can greatly vary in structure, depending on the builder and recipe type, this is of form "Any".
-    pub arguments: Option<Vec<HashMap<String, String>>>,
+    pub arguments: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were "make", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.
     #[serde(rename="definedInMaterial")]
     pub defined_in_material: Option<String>,
@@ -1077,7 +1077,7 @@ pub struct Recipe {
     #[serde(rename="entryPoint")]
     pub entry_point: Option<String>,
     /// Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy. Since the environment field can greatly vary in structure, depending on the builder and recipe type, this is of form "Any".
-    pub environment: Option<Vec<HashMap<String, String>>>,
+    pub environment: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
     #[serde(rename="type")]
     pub type_: Option<String>,
@@ -1213,7 +1213,7 @@ impl client::Part for SlsaProvenance {}
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct SlsaRecipe {
     /// Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint. Depending on the recipe Type, the structure may be different.
-    pub arguments: Option<HashMap<String, String>>,
+    pub arguments: Option<HashMap<String, serde_json::Value>>,
     /// Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were "make", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.
     #[serde(rename="definedInMaterial")]
     pub defined_in_material: Option<String>,
@@ -1221,7 +1221,7 @@ pub struct SlsaRecipe {
     #[serde(rename="entryPoint")]
     pub entry_point: Option<String>,
     /// Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy. Depending on the recipe Type, the structure may be different.
-    pub environment: Option<HashMap<String, String>>,
+    pub environment: Option<HashMap<String, serde_json::Value>>,
     /// URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
     #[serde(rename="type")]
     pub type_: Option<String>,
@@ -1281,7 +1281,7 @@ pub struct Status {
     /// The status code, which should be an enum value of google.rpc.Code.
     pub code: Option<i32>,
     /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
-    pub details: Option<Vec<HashMap<String, String>>>,
+    pub details: Option<Vec<HashMap<String, serde_json::Value>>>,
     /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
     pub message: Option<String>,
 }

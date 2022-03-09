@@ -482,7 +482,7 @@ pub struct Row {
     #[serde(rename="updateTime")]
     pub update_time: Option<String>,
     /// The values of the row. This is a map of column key to value. Key is user entered name(default) or the internal column id based on the view in the request.
-    pub values: Option<HashMap<String, String>>,
+    pub values: Option<HashMap<String, serde_json::Value>>,
 }
 
 impl client::RequestValue for Row {}
